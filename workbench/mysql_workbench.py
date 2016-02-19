@@ -123,6 +123,12 @@ def buildTree(host, user, password, database, port, xmlFilePath):
         tempXML = tempXML.replace("\n\n", '')
         tempXML = tempXML.replace('"dict"></value>', '"dict"/>')
         print tempXML
+        #before writing the right file, write a complete copy
+        dt = datetime.datetime().strftime('%Y%m%d-%H%M%S')
+        f = open(xmlFilePath + '.copy' + dt)
+        f.write(tempXML)
+        f.close()
+        #final write
         f = open(xmlFilePath, 'w')
         f.write(tempXML)
         f.close()
